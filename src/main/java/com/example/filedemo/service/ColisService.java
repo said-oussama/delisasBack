@@ -66,7 +66,7 @@ public class ColisService {
 	private final ColisRepository colisRepository;
 	@Autowired
 	private AnomalieService anomalieService;
-	
+
 	@Autowired
 	public ColisService(ColisRepository colisRepository) {
 		this.colisRepository = colisRepository;
@@ -509,6 +509,7 @@ public class ColisService {
 			}
 		}
 	}
+
 
 	public List<Colis> findColisByHub(Long idHub) {
 		return colisRepository.findColisByHub(idHub);

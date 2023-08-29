@@ -23,6 +23,8 @@ public class UserService implements Iuserservice {
 	@Autowired
 	private UserRepository userrep;
 
+
+
 	@Override
 	public User loadUserByUsername(String username) {
 		return userrep.findByUsername(username);
@@ -32,6 +34,8 @@ public class UserService implements Iuserservice {
 
 		String hashPW = bCryptPasswordEncoder.encode(user.getPassword());
 		user.setPassword(hashPW);
+		String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
 		user = userrep.save(user);
 		return user;
 	}
@@ -53,4 +57,5 @@ public class UserService implements Iuserservice {
 	public User loadUserById(Long id) {
 		return userrep.findByIduser(id);
 	}
+
 }

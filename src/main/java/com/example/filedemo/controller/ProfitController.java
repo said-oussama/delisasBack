@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.filedemo.model.Charge;
 import com.example.filedemo.model.Profit;
 import com.example.filedemo.service.ChargeService;
+import com.example.filedemo.model.Profit;
 import com.example.filedemo.service.ProfitService;
 
 @RestController

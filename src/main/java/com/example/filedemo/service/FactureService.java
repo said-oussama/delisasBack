@@ -9,6 +9,7 @@ import com.example.filedemo.model.Facture;
 import com.example.filedemo.model.Personnel;
 import com.example.filedemo.repository.FactureRepository;
 import com.example.filedemo.repository.PersonnelRepository;
+import com.example.filedemo.repository.FactureRepository;
 
 @Service
 public class FactureService {

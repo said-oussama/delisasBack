@@ -26,7 +26,7 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-	@Autowired
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -43,13 +43,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     @Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 
-		auth.userDetailsService(userDetailsService)
-		.passwordEncoder(BCryptPasswordEncoder);
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(BCryptPasswordEncoder);
 //		 auth.userDetailsService(userDetailsService)
 //	        .passwordEncoder(passwordEncoder());
-	}
+    }
 
     @Bean
     public JWTAuthenticationFilter authenticationTokenFilterBean() throws Exception {
@@ -58,13 +58,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	/*cors enabled*/
-    	http.cors().and();
-    	/**/
+        /*cors enabled*/
+        http.cors().and();
+        /**/
         http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.csrf().disable();
-		http.authorizeRequests().antMatchers("/swagger-ui/**", "/v2/api-docs", "/configuration/ui",
-				"/swagger-resources/**", "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll();
+        http.authorizeRequests().antMatchers("/swagger-ui/**", "/v2/api-docs", "/configuration/ui",
+                "/swagger-resources/**", "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll();
         http.authorizeRequests().antMatchers("/register/**","/authenticate","/api/excel/upload/**","/login/**","/confirm/**","/ws","/topic/messages","/our-websocket","/","/pay","/bills/export","/ajouteretaffecterCartaUser/{iduser}","/addproducttocart/product/{idproduit}/cart/{idcart}/qte/{qte}","/addproducttocart/product/{idproduit}/cart/{idcart}/qte/{qte}","/passercommand/cart/{idc}","/web/import/excel","/web/import/excel/colis").permitAll();
         http.authorizeRequests().antMatchers("/user/update-user","/imageUser/{id}","/imagePersonnel/{id}","/generateUniqueUsername/{nom}").permitAll();
         http.authorizeRequests().antMatchers("/carteGrisePersonnel/{id}").permitAll();
@@ -87,7 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.authorizeRequests().antMatchers("user/getpubById/{User_id}").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers("/payin6months/cmd/{idcmd}/compte/{idcpt1}/{idcpt2}/{iddeliv}","/addandassigndelveryabill/{iddeliv}","/genrateAndDownloadQRCode/{codeText}/{width}/{height}","/currency-converter/from/{from}/to/{to}/amount/{amount}","/currency-exchange/from/{from}/to/{to}","/dell/{userid}").permitAll();
-      http.authorizeRequests().antMatchers("forum/findbyid").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers("forum/findbyid").hasAuthority("ADMIN");
 
         http.authorizeRequests().antMatchers("/Forum/Publication/{idPub}/{idUser}/**","/user/deletePublicationById/{idpub}","deleteCommentaireById/{idcomment}").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers("ajouterContrat**","//affecterContratAEmploye/{idcontrat}/{iduser}/**","/getNombreEmployeJPQL/**","/getSalaireMoyen/**","/Forum/Publications/rating/**","/aff","/affecter/{iduser}/{idRole}","/all","getSalaireparid/{idemp}","getCarburant1","/allpub").hasAuthority("ADMIN");
@@ -95,7 +95,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("user/getAllPublicationJPQL/**","user/updatePublicationById/{id}/{newtopic}","/user/getAllCommentaireJPQL","mettreAjourPublicationById/{id}/{newdescription}","/evaluate/{idpub}","/modifie-user","/searchuser/{username}","allpub1","/Forum/AddPublication").hasAnyAuthority("ADMIN","USER");
         http.authorizeRequests().antMatchers("AddPublication/{idUser}","/Publication/{idPub}/{idUser}/ajouterCommentaire","/Listepardate/**","/searchtopic","/bestcomment/**","/Forum/file","/bestevaluation/**","/Forum/Publication/AddRating/**","/Forum/Send/{idSender}/{idRecipient}/**","/Forum/Receive/{idSender}/{idRecipient}/**","/AddPublication2/{idUser}").hasAnyAuthority("ADMIN","USER");
         http.authorizeRequests().anyRequest().authenticated();
-             //   .anyRequest().authenticated().and()
+        //   .anyRequest().authenticated().and()
         http.exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter(userDetailsService, jwtTokenUtil,
                 "Authorization");

@@ -33,8 +33,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter{
 	private JwtTokenUtil jwtTokenUtil;
 	private String tokenHeader;
 
-
-
 	public JWTAuthenticationFilter() {
 		super();
 		// TODO Auto-generated constructor stub
