@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import java.io.ByteArrayInputStream;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
@@ -38,11 +42,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.example.filedemo.model.Colis;
 import com.example.filedemo.model.ColisEtat;
 import com.example.filedemo.model.PDFGenerator;
 import com.example.filedemo.model.PDFGenerator2;
 import com.example.filedemo.model.Response;
+
 import com.example.filedemo.payload.ColisAssignAnomaliePayload;
 import com.example.filedemo.payload.ColisBSTreatment;
 import com.example.filedemo.payload.ColisDebriefBSResponse;
@@ -452,6 +458,7 @@ public class ColisController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Erreur lors du changement d'état
 		}
 	}
+
 
 
 	@GetMapping(value = "/findColisByHub/{idHub}")

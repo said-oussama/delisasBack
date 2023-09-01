@@ -50,8 +50,8 @@ import com.itextpdf.text.Font.FontFamily;
 @CrossOrigin("*")
 public class PDFGenerator {
 
-	private final static String defaultLogoPath="src"+File.separator+"main"+File.separator
-    		+"resources"+File.separator+"static"+File.separator+"logo"+File.separator+"logo-default.png";
+    private final static String defaultLogoPath="src"+File.separator+"main"+File.separator
+            +"resources"+File.separator+"static"+File.separator+"logo"+File.separator+"logo-default.png";
 
     private  final ColisService colisService ;
 
@@ -67,7 +67,7 @@ public class PDFGenerator {
     private static Logger logger = LoggerFactory.getLogger(PDFGenerator.class);
 
     public static ByteArrayInputStream colisPDFReport (List <Colis> coliss, String barCodeColisDirectoryPath,
-    		SocietePrincipal societePrincipal, String imagesDirectory ) throws MalformedURLException, IOException {
+                                                       SocietePrincipal societePrincipal, String imagesDirectory ) throws MalformedURLException, IOException {
         Rectangle pageSize = new Rectangle(700, 1000) ;
         Document document = new Document(pageSize);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -82,7 +82,7 @@ public class PDFGenerator {
                 Image image = Image.getInstance(barCodeColisDirectoryPath+File.separator+ c3.getBar_code() + ".jpg");
                 image.setBorder(1);
                 Image logo = Image.getInstance(societePrincipal!=null && societePrincipal.getLogo()!=null?
-                		Paths.get(imagesDirectory+File.separator+societePrincipal.getLogo()).toString():defaultLogoPath);
+                        Paths.get(imagesDirectory+File.separator+societePrincipal.getLogo()).toString():defaultLogoPath);
                 logo.setBorder(1);
                 logo.setAlignment(5);
                 logo.setAbsolutePosition(22,834);
@@ -93,7 +93,7 @@ public class PDFGenerator {
                 if(coliss.indexOf(c3)==0) {
                     document.add(new Phrase("\n"));
                 }
-            	document.add(new Phrase("\n"));
+                document.add(new Phrase("\n"));
                 document.add(new Phrase("\n"));
                 StringBuilder societeInfos=new StringBuilder();
                 if(societePrincipal!=null) {
@@ -104,7 +104,7 @@ public class PDFGenerator {
 
                 }
                 Paragraph societe = new Paragraph(societeInfos.toString(), FontFactory.getFont(FontFactory.HELVETICA ,10, BaseColor.BLACK ));
-                societe.setIndentationLeft(120f);    
+                societe.setIndentationLeft(120f);
                 document.add(societe);
                 image.setAlignment(50);
                 document.add(new Phrase("\n"));
@@ -122,21 +122,21 @@ public class PDFGenerator {
                 document.add(table9);
                 document.add(new Phrase("\n"));
                 document.add(new Phrase("\n"));
-      			Phrase cachet = new Phrase(
-      					"    Cachet:", new Font(FontFamily.HELVETICA ,11, Font.BOLD ));
-      			PdfPCell cellCachet = new PdfPCell(cachet);
-      			cellCachet.setHorizontalAlignment (Element.ALIGN_LEFT);
-      			cellCachet.setBorder( Rectangle.BOX) ;
-      			cellCachet.setBorderColor( new BaseColor(253, 254, 254));
-      			cellCachet.setBorderWidth(1f);
-                  PdfPTable tableCachet = new PdfPTable(1);
-                  tableCachet.addCell(cellCachet);
-                  tableCachet.setHorizontalAlignment (Element.ALIGN_LEFT);
-                  tableCachet.setWidthPercentage(30f);
-                  document.add(tableCachet);
-                  document.add(new Phrase("\n"));
-                  document.add(new Phrase("\n"));
-                  document.add(new Phrase("\n"));
+                Phrase cachet = new Phrase(
+                        "    Cachet:", new Font(FontFamily.HELVETICA ,11, Font.BOLD ));
+                PdfPCell cellCachet = new PdfPCell(cachet);
+                cellCachet.setHorizontalAlignment (Element.ALIGN_LEFT);
+                cellCachet.setBorder( Rectangle.BOX) ;
+                cellCachet.setBorderColor( new BaseColor(253, 254, 254));
+                cellCachet.setBorderWidth(1f);
+                PdfPTable tableCachet = new PdfPTable(1);
+                tableCachet.addCell(cellCachet);
+                tableCachet.setHorizontalAlignment (Element.ALIGN_LEFT);
+                tableCachet.setWidthPercentage(30f);
+                document.add(tableCachet);
+                document.add(new Phrase("\n"));
+                document.add(new Phrase("\n"));
+                document.add(new Phrase("\n"));
                 PdfPTable expedtDest = new PdfPTable(2);
                 expedtDest.setTotalWidth(600f);
                 expedtDest.setLockedWidth(true);
@@ -179,7 +179,7 @@ public class PDFGenerator {
                 expedtDest.addCell(celExp);
                 expedtDest.addCell(celDes);
                 document.add(expedtDest);
-               
+
                 // Add Text to PDF file ->// Add Text to PDF file ->
                 Font font = FontFactory.getFont(FontFactory.HELVETICA ,15, BaseColor.WHITE ) ;
                 Font font1 = FontFactory.getFont(FontFactory.HELVETICA ,11 , BaseColor.BLACK);
@@ -276,8 +276,10 @@ public class PDFGenerator {
                 desCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 desCell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 desCell.setBorderWidth(1);
-                
-                double prix2 = new Double(decimalFormat.format(new Double(c3.getNb_p()*c3.getCod())*0.93));
+
+                String prixString = decimalFormat.format(new Double(c3.getNb_p()*c3.getCod())*0.93);
+                prixString = prixString.replace(",", ".");
+                double prix2 = Double.parseDouble(prixString);
                 PdfPCell cod2Cell = new PdfPCell(new Phrase (String.valueOf(prix2) , font10));
                 cod2Cell.setPaddingLeft(4);
                 cod2Cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -318,12 +320,12 @@ public class PDFGenerator {
                     PdfPCell header3 = new PdfPCell();
                     Font headFont4=null;
                     if(headerTitle.equals("Total")) {
-                    	headFont4=new Font(FontFamily.HELVETICA,15,Font.BOLD);
+                        headFont4=new Font(FontFamily.HELVETICA,15,Font.BOLD);
                     }
                     else {
-                    	headFont4=new Font(FontFamily.HELVETICA,12,Font.BOLD);
+                        headFont4=new Font(FontFamily.HELVETICA,12,Font.BOLD);
                     }
-                   
+
                     header3.setBackgroundColor(BaseColor.WHITE);
                     header3.setHorizontalAlignment(Element.ALIGN_CENTER);
                     header3.setBorderWidth(1);
@@ -362,5 +364,3 @@ public class PDFGenerator {
         }
         return new ByteArrayInputStream(out.toByteArray());
     }}
-
-

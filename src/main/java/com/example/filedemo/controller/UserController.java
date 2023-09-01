@@ -76,6 +76,7 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(userPostRegister);
 	}
 
+
 	@PostMapping(value = "/login")
 	public ResponseEntity<JwtRequest> register(@RequestBody JwtRequest loginUser) throws AuthenticationException {
 		authenticationManager.authenticate(

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.example.filedemo.model.Fournisseur;
 import com.example.filedemo.model.User;
 
+import com.example.filedemo.model.Fournisseur;
+
 import javax.transaction.Transactional;
 
 public interface FournisseurRepository extends JpaRepository<Fournisseur, Long> {

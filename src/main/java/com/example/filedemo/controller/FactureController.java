@@ -16,6 +16,7 @@ import com.example.filedemo.model.Facture;
 import com.example.filedemo.model.Personnel;
 import com.example.filedemo.service.FactureService;
 import com.example.filedemo.service.PersonnelService;
+import com.example.filedemo.service.FactureService;
 
 @RestController
 public class FactureController {

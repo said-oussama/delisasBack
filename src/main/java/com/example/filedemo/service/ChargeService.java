@@ -9,6 +9,7 @@ import com.example.filedemo.model.Charge;
 import com.example.filedemo.model.Emballage;
 import com.example.filedemo.repository.ChargeRepository;
 import com.example.filedemo.repository.EmballageRepository;
+import com.example.filedemo.repository.ChargeRepository;
 
 @Service
 public class ChargeService {

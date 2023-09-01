@@ -47,6 +47,10 @@ import com.example.filedemo.model.Colis;
 import com.example.filedemo.model.Fournisseur;
 import com.example.filedemo.model.Personnel;
 import com.example.filedemo.model.Response;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.example.filedemo.model.Fournisseur;
 import com.example.filedemo.repository.FournisseurRepository;
 import com.example.filedemo.service.FournisseurService;
 import com.example.filedemo.service.UserService;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.filedemo.model.Charge;
 import com.example.filedemo.model.Profit;
 import com.example.filedemo.repository.ChargeRepository;
+import com.example.filedemo.model.Profit;
 import com.example.filedemo.repository.ProfitRepository;
 
 @Service
